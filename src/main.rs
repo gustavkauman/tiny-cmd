@@ -20,12 +20,12 @@ async fn main() -> Result<()> {
 
     let url = matches.values_of("Long URL").unwrap().next().unwrap();
 
-    println!("{}", get_short_url(url).await);
+    println!("{}", get_short_url(url));
 
     Ok(())
 }
 
-async fn get_short_url(long_url: &str) -> String {
+fn get_short_url(long_url: &str) -> String {
 
     let base_api_url = "http://tinyurl.com/create.php";
 
@@ -35,7 +35,8 @@ async fn get_short_url(long_url: &str) -> String {
     let client = reqwest::blocking::Client::new();
     let res = client.post(base_api_url)
         .json(&body)
-        .send();
+        .send()
+        .unwrap();
     
-    res.unwrap().text().unwrap()
+    res.text().unwrap()
 }
