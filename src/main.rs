@@ -10,7 +10,7 @@ async fn main() -> Result<()> {
     let matches = App::new("tiny")
         .version("0.1.0")
         .author("Gustav Utke Kauman <gkauman@eadu.dk>")
-        .about("Command line tool for creating tiny URLs using the tinyurl.com")
+        .about("Command line tool for creating tiny URLs using the tinyurl.com API")
         .arg(Arg::with_name("Long URL")
             .required(true)
             .takes_value(true)
